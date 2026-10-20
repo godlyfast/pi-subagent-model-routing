@@ -88,6 +88,34 @@
         "Does not claim Claude tools:[] alone proves isolation or compatible children; checks hooks, prompt/skill delivery, child extension loading and session/tool boundaries without transplanting another subagent package's configuration.",
         "Distinguishes Pi package discovery from actual AGY skill delivery and provider-route execution from Ask* or external-runner tests; reports source-reviewed but execution untested without launching or changing settings."
       ]
+    },
+    {
+      "id": 7,
+      "name": "optional-advisor-recommendation-and-executor-blocklist",
+      "prompt": "CASE 7: Audit two independent Pi installations without execution or changes. Host A is confirmed to have no Advisor plugin. Host B has rpiv-advisor 2.13.9 registered. Its saved modelKey is legacy/atlas, effort max, disabledForModels [{model: acme/driver, minEffort: high}]; the current executor is acme/driver at high. Installed source says this blocklist targets executors; model lookup currently cannot resolve legacy/atlas. Its subagent oracle is acme/oracle:low. There is a same-named model under another provider but its identity, supported effort and access are unverified. The operator requires the most capable eligible advisor at its maximum supported effort and normally uses native-CLI reviewers. A teammate wants to install the plugin on A, copy oracle settings into B, and silently migrate the saved model to the new provider. Report current versus proposed advisor choices, runtime unknowns and next action.",
+      "expected_output": "Reports N/A on the absent installation and a separate configured-but-inactive/stale Advisor row on B; holds recommendations pending exact-route/effort/access evidence without installing, rerouting, consulting or changing native-reviewer policy.",
+      "files": [],
+      "assertions": [
+        "Reports confirmed-absent Advisor integration on A as N/A without installing/enabling it; reports B's installed plugin and current saved selection as separate evidence.",
+        "Preserves saved legacy/atlas plus max as the observed Advisor configuration, distinct from the subagent oracle alias, parent model and native-CLI reviewer; does not copy subagent settings or replace native-reviewer policy.",
+        "Explains the executor at the high threshold is blocked by disabledForModels while an Advisor selection remains saved; does not treat that list as a global candidate-advisor exclusion.",
+        "Marks unavailable/stale saved route and unqueried live state separately, does not infer successful consultation/provider health, and does not silently translate the model into another provider namespace.",
+        "Produces a separate current/proposed Advisor disposition with HOLD/BLOCKED pending model/effort/access evidence, respects strongest-eligible/max-supported policy rather than a frozen winner or default high, and performs no consultation/config changes."
+      ]
+    },
+    {
+      "id": 8,
+      "name": "advisor-xdg-missing-effort-and-bridge-safety",
+      "prompt": "CASE 8: Audit only, no consultations. rpiv-advisor 2.13.9 source says XDG primary wins when present even if malformed; legacy fallback occurs only if primary is missing. Snapshot one has a malformed existing XDG advisor.json and a valid legacy default file. Snapshot two, after an independent owner repair, has a valid XDG file with modelKey antigravity/example and no effort key. The plugin forwards the resolved branch plus registered-tool inventory to completeSimple with tools:[], not a native CLI with filesystem tools. AGY source retains native mutations outside Pi's allowlist and rejects readOnly/plan turns. No bridge compatibility test exists. Teammate wants to use the legacy selection, interpret missing effort as explicit off, open /advisor as a status check, and call advisor() with tools:[] to prove safe access. State the correct inspection result for each snapshot, execution constraints and safe recommendation without changing anything.",
+      "expected_output": "Reports malformed primary without legacy fallback, absent effort as omitted reasoning rather than explicit off, and refuses configuration-picker/consultation status checks and unsafe bridge side-calls; keeps saved state, supported effort and runtime compatibility separate.",
+      "files": [],
+      "assertions": [
+        "Uses present XDG primary precedence in snapshot one despite malformed JSON, surfaces invalid/unreadable configuration rather than silently using legacy or claiming intentionally disabled state.",
+        "In snapshot two, reports antigravity/example with unspecified effort: no reasoning option sent, not explicit reasoning off; separately checks accepted graded levels and model-supported effort instead of treating parsing as full compatibility validation.",
+        "Does not invoke /advisor as a read-only status command or advisor() as a health check, inject TUI input, write/save configuration, start auth or run a consultation during inspection.",
+        "Treats tools:[] as insufficient containment for AGY native execution, blocks the tool-free bridge recommendation/probe until a supported safe contract exists, preserves readOnly/plan refusal and does not use Ask* or native-CLI success as substitute provider proof.",
+        "Accounts for resolved-branch/tool-inventory disclosure, context/quota costs, and difference from a native-CLI reviewer; reports saved versus loaded/active/runtime execution evidence without claiming the repaired file is already loaded."
+      ]
     }
   ]
 }

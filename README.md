@@ -12,7 +12,7 @@ A Pi skill for matching each pi-subagents role to a usable, policy-compliant mod
 ## Install
 
 ```bash
-pi install git:github.com/godlyfast/pi-subagent-model-routing@v1.0.1
+pi install git:github.com/godlyfast/pi-subagent-model-routing@v1.0.2
 ```
 
 The package exposes `SKILL.md` through the `pi.skills` manifest in `package.json`. Reload or start a new Pi session; the skill appears as `pi-subagent-model-routing`.
@@ -46,6 +46,10 @@ Apply needs an approved mapping; it verifies the live mapping after reload.
 - Every recommendation names an explicit model and thinking level together, mapped from benchmark URL, retrieval date, and effort setting to exact registry IDs.
 - API list price is never presented as subscription marginal cost.
 - Apply is guarded: re-read before editing, a private rollback copy, scope limited to approved fields, and a fallback route's success never passes a failed primary.
+
+## Optional Advisor recommendations
+
+When an Advisor plugin is installed, the skill [checks its saved model, effort, and executor-disable rules](references/advisor.md) without consulting or changing it. It reports a separate current/proposed Advisor row—not the subagent `oracle` alias—and respects your model/effort and native-reviewer policies. When absent, it reports N/A without installing anything. Saved configuration does not establish active runtime state or provider health.
 
 ## Provider bridge support
 

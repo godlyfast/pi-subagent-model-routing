@@ -12,6 +12,8 @@ Use only the section matching the authorized mode. Commands evolve: confirm agai
 
 For extension-provided routes, read [subscription provider bridges](bridges.md) before assigning roles or probing. Inventory registered IDs and installed source without starting plugins. Native tools, child extension loading, thinking maps, skill delivery, and effective subscription/API billing are separate compatibility checks; a provider bridge is not an external runner or an `Ask*` delegation tool.
 
+If an Advisor plugin is installed, follow [its separate inventory and recommendation contract](advisor.md). Allowlist only its model/effort and executor-disable settings; keep its configuration and runtime state distinct from subagent aliases. Plugin configuration pickers and consultations are not status queries.
+
 ### Commands that infer or mutate — never in audit mode
 
 | Command | Effect |

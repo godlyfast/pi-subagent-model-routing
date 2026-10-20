@@ -1,6 +1,6 @@
 # Eval notes
 
-`evals.json` holds six read-only tabletop scenarios: audit-mode command gates, chart identity/effort mapping, override precedence, primary-429 handling, subscription provider bridges, and bridge-native tool safety. Run each with a fresh agent given only `SKILL.md`, `references/operations.md`, `references/bridges.md`, and the fixture listed in the scenario's `files`, with no tools. Judge against the assertions, not keyword counts. Running the evaluator itself can consume model quota and needs authorization; the evaluator only describes the scenario and never executes its commands.
+`evals.json` holds eight read-only tabletop scenarios: audit-mode gates, chart identity/effort, override precedence, primary-429 handling, subscription bridges, bridge-native tool safety, optional Advisor recommendations, and Advisor configuration precedence/side-call safety. Run each with a fresh agent given only `SKILL.md`, `references/operations.md`, `references/bridges.md`, `references/advisor.md`, and the fixture listed in the scenario's `files`, with no tools. Judge against the assertions, not keyword counts. Running the evaluator itself can consume model quota and needs authorization; the evaluator only describes the scenario and never executes its commands.
 
 ## Fixtures
 
