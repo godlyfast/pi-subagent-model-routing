@@ -12,7 +12,7 @@ A Pi skill for matching each pi-subagents role to a usable, policy-compliant mod
 ## Install
 
 ```bash
-pi install git:github.com/godlyfast/pi-subagent-model-routing@v1.0.0
+pi install git:github.com/godlyfast/pi-subagent-model-routing@v1.0.1
 ```
 
 The package exposes `SKILL.md` through the `pi.skills` manifest in `package.json`. Reload or start a new Pi session; the skill appears as `pi-subagent-model-routing`.
@@ -46,6 +46,12 @@ Apply needs an approved mapping; it verifies the live mapping after reload.
 - Every recommendation names an explicit model and thinking level together, mapped from benchmark URL, retrieval date, and effort setting to exact registry IDs.
 - API list price is never presented as subscription marginal cost.
 - Apply is guarded: re-read before editing, a private rollback copy, scope limited to approved fields, and a fallback route's success never passes a failed primary.
+
+## Provider bridge support
+
+[Claude Bridge and Antigravity Bridge contracts](references/bridges.md) cover extension-provider routes inside Pi, including subscription-backed billing evidence, exact model/thinking mappings, child prompt/skill delivery, and native tool boundaries. Subscription routes are eligible candidates—not automatically expensive direct API routes, free usage, or verified access.
+
+Claude Bridge's forwarded Pi tools and Antigravity's native tool loop have different safety contracts. In particular, a Pi tool allowlist or worktree does not make AGY read-only. Audits do not launch bridges, change authentication, or enable paid usage. Bridge support is **source-reviewed guidance**, not a claim that either plugin has passed live subagent integration tests.
 
 ## Limitations
 

@@ -3,7 +3,7 @@ name: pi-subagent-model-routing
 description: "Use when auditing, recommending, probing, or applying Pi subagent model and thinking-level assignments (pi-subagents agentOverrides, per-run overrides, profiles), when comparing benchmark charts against subscriptions and quotas for role routing, or when a Pi role override did not take effect."
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Pi subagent model routing
@@ -36,7 +36,7 @@ The deployment's provider allow/deny lists, budget rules, and data-handling poli
 ## Workflow
 
 1. **Establish scope.** Record Pi and pi-subagents versions, user versus project settings paths, and concurrent edits. Read allowlisted routing keys only — never raw settings, auth files, or environment dumps.
-2. **Reconcile access.** Follow [inventory and access](references/operations.md#inventory-and-access). Keep registry entry, saved auth, entitlement, quota, and probe results as separate evidence columns; an `enabledModels` entry is catalog presence, not a route or entitlement.
+2. **Reconcile access.** Follow [inventory and access](references/operations.md#inventory-and-access). For extension providers such as Claude Bridge or Antigravity, also read [bridge contracts](references/bridges.md) before recommending: subscription billing, thinking translation, child prompt delivery, and native tool boundaries differ from direct APIs. Keep registry entry, saved auth, entitlement, quota, and probe results separate; an `enabledModels` entry is catalog presence, not entitlement.
 3. **Refresh the comparison.** Fetch current primary benchmark pages — Artificial Analysis model and methodology pages plus vendor docs for the IDs, effort enums, and list prices you cite. Record each claim's URL, retrieval date, index version, and effort setting. Map chart display names to exact registry IDs; mark unmapped names unresolved. Compare like efforts only; native-harness agent scores are not Pi subagent scores; API list price is not subscription marginal cost.
 4. **Recommend or probe.** Audit mode stops at the proposal. Probes require authorization and follow [bounded probes](references/operations.md#bounded-probes); stop if measurable bounds cannot be enforced. Never fall back to a shell/CLI execution lane when the governed subagent lane fails.
 5. **Apply only approved changes.** Re-read live settings immediately before editing; stop if the target fields changed unexpectedly. Merge only approved fields; keep a private rollback copy. Approval for one file or role does not extend to others. Saved fields and the live `/subagents-models` mapping must agree; disk edits are not live until reload.

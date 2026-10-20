@@ -45,6 +45,7 @@ REQUIRED_FILES = [
     "LICENSE",
     "package.json",
     "references/operations.md",
+    "references/bridges.md",
     "evals/evals.json",
     "evals/README.md",
 ]

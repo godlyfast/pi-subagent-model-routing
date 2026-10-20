@@ -10,6 +10,8 @@ Use only the section matching the authorized mode. Commands evolve: confirm agai
 - `/subagents-models` (or tool `{ action: "models" }`) reports the live runtime mapping. It can differ from settings on disk until Pi reloads; record which one you read and reconcile discrepancies before recommending.
 - Agent frontmatter in the installed package (`agents/*.md`) for builtin `model`/`thinking` pins; list the pi-subagents profiles directory under your Pi agent settings directory for saved profiles and cached provider catalogs.
 
+For extension-provided routes, read [subscription provider bridges](bridges.md) before assigning roles or probing. Inventory registered IDs and installed source without starting plugins. Native tools, child extension loading, thinking maps, skill delivery, and effective subscription/API billing are separate compatibility checks; a provider bridge is not an external runner or an `Ask*` delegation tool.
+
 ### Commands that infer or mutate — never in audit mode
 
 | Command | Effect |
@@ -42,7 +44,7 @@ Their names do not establish metadata-only behavior; do not run them to "check" 
 
 ## Bounded probes
 
-Live inference consumes quota and needs explicit authorization naming the routes and a budget. An audit request is not that authorization.
+Live inference consumes quota and needs explicit authorization naming the routes and a budget. An audit request is not that authorization. For bridges, also enforce the [native tool and child-delivery contract](bridges.md); a Pi tool allowlist or worktree alone does not contain a provider's native agent loop. Stop on unmet boundaries rather than launching a supposedly harmless health check.
 
 1. Launch through the governed subagent lane with an explicit per-run `provider/model:level` override, and confirm its precedence against the installed pi-subagents documentation. This pins the extension's selected route, not necessarily a virtual router's physical dispatch: inspect any configured virtual router and verify the resolved physical model and thinking level. Stop if route attribution cannot be established. If the lane fails, stop and report; do not fall back to shell/CLI execution-mode workarounds.
 2. Bound every probe measurably before launching: a minimal fixed prompt, a small output cap the provider supports, a wall-clock bound, and at most one retry on transient transport errors. Stop if any bound cannot be enforced.

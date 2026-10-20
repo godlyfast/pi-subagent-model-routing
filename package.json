@@ -1,6 +1,6 @@
 {
   "name": "pi-subagent-model-routing",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pi skill for auditing, probing, and applying pi-subagents model and thinking-level assignments against current benchmark, entitlement, and quota evidence.",
   "license": "MIT",
   "pi": {
