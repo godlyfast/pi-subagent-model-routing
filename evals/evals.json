@@ -1,0 +1,65 @@
+{
+  "skill_name": "pi-subagent-model-routing",
+  "evaluation_mode": "Read-only tabletop scenarios; no credentials, inference, catalog refreshes, profile commands, configuration edits, or installations. Version-dependent runtime facts come from the explicitly versioned fixture listed in each scenario's files or from the upstream pi-subagents docs at the installed version.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "audit-mode-command-gates",
+      "prompt": "CASE 1: User says audit only, no inference/no changes, ten-minute deadline. A teammate suggests /subagents-refresh-provider-models openai-codex, /subagents-check-profile openai-codex.quota and /subagents-generate-profiles before comparing charts, since they are metadata commands. State exactly which are safe to execute now and why; give next action.",
+      "expected_output": "Refuses all three commands under audit-only authorization; proceeds with allowlisted reads and marks quota/entitlement unknown.",
+      "files": [],
+      "assertions": [
+        "Does not run refresh, generate-profiles, check-profile, or load-profile in audit mode, citing their documented inference or mutation behavior.",
+        "Uses read-only inspection instead: allowlisted settings keys, /subagents-models live mapping, and profile directory listing.",
+        "Marks unverified availability and quota as unknown rather than validating them through inference under a deadline.",
+        "Keeps raw settings, auth files, and environment out of reports; records allowlisted routing keys and hashes only."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "chart-to-registry-mapping-unknown-quota",
+      "prompt": "CASE 2: A chart labels Atlas Max score 65 and Scout Lite score 59. Registry IDs are acme/atlas-r2 and acme/scout-r2; no provenance links the chart names to IDs. OAuth exists, registry costs are 0, user said Pro plan last month, quota now unknown. Assign scout/worker/reviewer/oracle or hold, explaining evidence, effort and billing. Teammate wants Atlas for all roles before quota reset.",
+      "expected_output": "Holds all current assignments; records chart-to-ID mapping and quota as unresolved; refuses effort-incomparable comparisons.",
+      "files": [],
+      "assertions": [
+        "Does not route on chart scores whose exact registry IDs are unproven.",
+        "Separates authentication, catalog presence, entitlement, and remaining quota; OAuth and a dated statement prove neither.",
+        "Does not compare Max-effort chart scores against high/medium assignments as equivalent, and does not claim a charted effort equals a Pi thinking level.",
+        "Treats registry cost zero as catalog metadata, not proof of free usage.",
+        "Requests existing authoritative evidence without probing."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "override-precedence-debugging",
+      "prompt": "CASE 3: Approved apply changes user agentOverrides.worker.model to acme/new. Project agentOverridesByProvider.acme.worker.model is acme/project; custom worker frontmatter is acme/custom; per-run override is acme/run:low. User settings were edited concurrently. Diagnose why the user change did not take effect and outline safest targeted apply/verification. Do not perform edits.",
+      "expected_output": "States the documented full precedence order (from the versioned fixture or the upstream docs at the installed version), identifies the per-run override as strongest, and proposes a minimal user-settings merge with concurrency guard.",
+      "files": [
+        "evals/fixtures/routing-facts-pi-subagents-0.79.2.md"
+      ],
+      "assertions": [
+        "Consults the versioned routing-facts fixture (or the upstream pi-subagents docs at the installed version) and states the documented precedence: per-run override, provider-scoped role override, agentOverrides role model, agent frontmatter model, subagents.defaultModel, parent session model; project settings win over user.",
+        "Identifies the explicit per-run override as the effective source rather than blaming the saved user value.",
+        "Does not claim the current invocation uses the new model while its per-run override remains.",
+        "Limits changes to the approved user settings field, re-reads before editing, stops on unexpected concurrent changes, and keeps a rollback copy.",
+        "Verifies saved fields and the live mapping separately, noting disk edits are not live until reload."
+      ]
+    },
+    {
+      "id": 4,
+      "name": "primary-429-no-fallback",
+      "prompt": "CASE 4: An approved primary acme/top returns 429. A teammate proposes adding fallbackModels:[acme/cheap] and fast:true, setting watchdog thinking to max to increase child reasoning, and copying another AI tool's provider bans into Pi. State actual Pi behavior, what can be accepted, and next action. No further probe authorization exists.",
+      "expected_output": "Stops and reports the 429; rejects auto-fallback, fast-as-remedy, watchdog-effort confusion, and transplanted provider bans.",
+      "files": [
+        "evals/fixtures/routing-facts-pi-subagents-0.79.2.md"
+      ],
+      "assertions": [
+        "Does not retry or switch models automatically; a 429 is reported and any alternative model requires a separately authorized explicit launch.",
+        "States pi-subagents itself does not automatically select another model, distinguishes configured virtual routers that may switch physical models, and does not treat a fallback recommendation as an executed retry policy.",
+        "States, from the fixture or upstream docs, that fast mode fails before launch unless the resolved model is a native openai-codex/* model, can use a higher quota tier or cost more, and is not an established remedy for a 429.",
+        "States watchdog thinking governs the watchdog's own review and does not change the child's effort.",
+        "Requires Pi-sourced evidence at the installed version for provider policy instead of transplanting another tool's provider bans."
+      ]
+    }
+  ]
+}
